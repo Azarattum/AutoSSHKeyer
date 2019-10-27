@@ -46,13 +46,13 @@ print("Done with copying keys!")
 print("Preparing configuration script...")
 config_script = "cat /etc/ssh/sshd_config | "
 config_script += "sed -e \"s/PubkeyAuthentication/#PubkeyAuthentication/g\" | "
-config_script += "sed -e \"s/PasswordAuthentication/#PasswordAuthentication/g\" > "
-config_script += "/etc/ssh/sshd_config.tmp && "
-config_script += "echo PubkeyAuthentication yes >> /etc/ssh/sshd_config.tmp && "
-config_script += "echo PasswordAuthentication no >> /etc/ssh/sshd_config.tmp &&"
-config_script += "rm /etc/ssh/sshd_config && "
-config_script += "mv /etc/ssh/sshd_config.tmp /etc/ssh/sshd_config && "
-config_script += "service ssh restart"
+config_script += "sed -e \"s/PasswordAuthentication/#PasswordAuthentication/g\" | "
+config_script += "sudo tee /etc/ssh/sshd_config.tmp && "
+config_script += "echo PubkeyAuthentication yes | sudo tee -a /etc/ssh/sshd_config.tmp && "
+config_script += "echo PasswordAuthentication no | sudo tee -a /etc/ssh/sshd_config.tmp && "
+config_script += "sudo rm /etc/ssh/sshd_config && "
+config_script += "sudo mv /etc/ssh/sshd_config.tmp /etc/ssh/sshd_config && "
+config_script += "sudo service ssh restart"
 
 print("Evaluating the script on ssh...")
 print("Follow the instructions of \"ssh\":")
