@@ -1,5 +1,5 @@
 # Auto SSH Keyer
-Script for automatic setup and upload of your RSA public keys though SSH.
+Script for automatic setup and upload of your RSA public keys through SSH.
 
 ## Features:
   - Concatinates all your .pub files into a single one
